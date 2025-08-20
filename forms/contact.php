@@ -10,9 +10,6 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
 
-// Adresse email qui recevra les messages
-$receiving_email_address = 'dev.nassim.pro@gmail.com';
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Récupération et nettoyage des champs
