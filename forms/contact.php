@@ -1,14 +1,13 @@
 <?php
-// Inclure l'autoload du vendor existant
+// Inclure l'autoload du vendor
 require __DIR__ . '/../vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-use Dotenv\Dotenv;
 
-// Charger les variables d'environnement depuis le dossier parent
-$dotenv = Dotenv::createImmutable(__DIR__ . '/../');
-$dotenv->load();
+// Pas de phpdotenv en prod
+// $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+// $dotenv->load();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -26,20 +25,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $mail = new PHPMailer(true);
 
     try {
-
         // Configuration du serveur SMTP
         $mail->isSMTP();
-        $mail->Host       = $_ENV['SMTP_HOST'];
+        $mail->Host       = getenv('SMTP_HOST');
         $mail->SMTPAuth   = true;
-        $mail->Username   = $_ENV['GMAIL_USER']; 
-        $mail->Password   = $_ENV['GMAIL_PASSWORD']; 
+        $mail->Username   = getenv('GMAIL_USER'); 
+        $mail->Password   = getenv('GMAIL_PASSWORD'); 
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port       = 465; 
 
         // Expéditeur et destinataire
-        $mail->setFrom($_ENV['GMAIL_RECEIVING_EMAIL_ADDRESS'], 'Nextline Contact Form');
+        $mail->setFrom(getenv('GMAIL_RECEIVING_EMAIL_ADDRESS'), 'Nextline Contact Form');
         $mail->addReplyTo($email, $name);
-        $mail->addAddress($receiving_email_address);
+        $mail->addAddress(getenv('GMAIL_RECEIVING_EMAIL_ADDRESS')); // ou ton destinataire fixe
 
         // Contenu
         $mail->isHTML(true);

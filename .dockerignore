@@ -1,7 +1,6 @@
 # Ignorer tous les fichiers .env
-*.env
+.env
 
 # Ignorer les fichiers de logs
-*.log
-
-*.vendor/
+.log
+.vendor/
