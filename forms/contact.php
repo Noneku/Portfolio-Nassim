@@ -9,6 +9,8 @@ use PHPMailer\PHPMailer\Exception;
 // $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
 // $dotenv->load();
 
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Récupération et nettoyage des champs
@@ -48,10 +50,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->AltBody = "Nom: {$name}\nEmail: {$email}\nMessage:\n{$message}";
 
         $mail->send();
-        echo "Message envoyé avec succès.";
+        echo "OK";
 
     } catch (Exception $e) {
-        echo "Erreur lors de l'envoi: {$mail->ErrorInfo}";
+        $mail->ErrorInfo;
     }
 
 } else {
