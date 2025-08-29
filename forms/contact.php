@@ -6,8 +6,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 // Pas de phpdotenv en prod
-// $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+ // $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
 // $dotenv->load();
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -16,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email   = trim($_POST['email'] ?? '');
     $subject = trim($_POST['subject'] ?? '');
     $message = trim($_POST['message'] ?? '');
+
 
     // Vérification des champs
     if (empty($name) || empty($email) || empty($subject) || empty($message)) {
@@ -37,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Expéditeur et destinataire
         $mail->setFrom(getenv('GMAIL_RECEIVING_EMAIL_ADDRESS'), 'Nextline Contact Form');
         $mail->addReplyTo($email, $name);
-        $mail->addAddress(getenv('GMAIL_RECEIVING_EMAIL_ADDRESS')); // ou ton destinataire fixe
+        $mail->addAddress(getenv('GMAIL_RECEIVING_EMAIL_ADDRESS'));
 
         // Contenu
         $mail->isHTML(true);
@@ -47,11 +49,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                           <strong>Message :</strong><br>" . nl2br(htmlspecialchars($message));
         $mail->AltBody = "Nom: {$name}\nEmail: {$email}\nMessage:\n{$message}";
 
-        $mail->send();
+        //$mail->send();
         echo "Message envoyé avec succès.";
 
     } catch (Exception $e) {
-        echo "Erreur lors de l'envoi: {$mail->ErrorInfo}";
+        echo "Une erreur est survenue lors de l'envoi du message. Veuillez réessayer.";
     }
 
 } else {
