@@ -10,6 +10,7 @@ use PHPMailer\PHPMailer\Exception;
 // $dotenv->load();
 
 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Récupération et nettoyage des champs
@@ -49,11 +50,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                           <strong>Message :</strong><br>" . nl2br(htmlspecialchars($message));
         $mail->AltBody = "Nom: {$name}\nEmail: {$email}\nMessage:\n{$message}";
 
-        //$mail->send();
-        echo "Message envoyé avec succès.";
+        $mail->send();
+        echo "OK";
 
     } catch (Exception $e) {
-        echo "Une erreur est survenue lors de l'envoi du message. Veuillez réessayer.";
+        $mail->ErrorInfo;
     }
 
 } else {
