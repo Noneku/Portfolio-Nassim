@@ -1,48 +1,40 @@
 <?php
-// Inclure l'autoload du vendor
 require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../api/api-client.php';
 
+use Dotenv\Dotenv;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// Pas de phpdotenv en prod
- // $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
-// $dotenv->load();
-
-
+// Charger le .env
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    // Récupération et nettoyage des champs
     $name    = trim($_POST['name'] ?? '');
     $email   = trim($_POST['email'] ?? '');
     $subject = trim($_POST['subject'] ?? '');
     $message = trim($_POST['message'] ?? '');
 
-
-    // Vérification des champs
     if (empty($name) || empty($email) || empty($subject) || empty($message)) {
         die("Tous les champs sont obligatoires.");
     }
 
+    // 1️⃣ Envoi via PHPMailer
     $mail = new PHPMailer(true);
-
     try {
-        // Configuration du serveur SMTP
         $mail->isSMTP();
-        $mail->Host       = getenv('SMTP_HOST');
+        $mail->Host       = $_ENV['SMTP_HOST'];
         $mail->SMTPAuth   = true;
-        $mail->Username   = getenv('GMAIL_USER'); 
-        $mail->Password   = getenv('GMAIL_PASSWORD'); 
+        $mail->Username   = $_ENV['GMAIL_USEREMAIL'];
+        $mail->Password   = $_ENV['GMAIL_PASSWORD'];
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-        $mail->Port       = 465; 
+        $mail->Port       = 465;
 
-        // Expéditeur et destinataire
-        $mail->setFrom(getenv('GMAIL_RECEIVING_EMAIL_ADDRESS'), 'Nextline Contact Form');
+        $mail->setFrom($_ENV['GMAIL_RECEIVING_EMAIL_ADDRESS'], 'Nextline Contact Form');
         $mail->addReplyTo($email, $name);
-        $mail->addAddress(getenv('GMAIL_RECEIVING_EMAIL_ADDRESS'));
+        $mail->addAddress($_ENV['GMAIL_RECEIVING_EMAIL_ADDRESS']);
 
-        // Contenu
         $mail->isHTML(true);
         $mail->Subject = $subject;
         $mail->Body    = "<strong>Nom :</strong> {$name}<br>
@@ -51,13 +43,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->AltBody = "Nom: {$name}\nEmail: {$email}\nMessage:\n{$message}";
 
         $mail->send();
-        echo "OK";
-
     } catch (Exception $e) {
-        $mail->ErrorInfo;
+        echo "OK" . $mail->ErrorInfo;
     }
 
+    // 2️⃣ Envoi à l'API PortalPro pour stockage en DB
+    $response = postMailToAPI($name, $subject, $message, $email, $_ENV['GMAIL_RECEIVING_EMAIL_ADDRESS']);
+
+    echo "OK";
 } else {
     die("Méthode de requête non autorisée.");
 }
-?>
