@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port       = 465;
 
-        $mail->setFrom($_ENV['GMAIL_RECEIVING_EMAIL_ADDRESS'], 'Nextline Contact Form');
+        $mail->setFrom($_ENV['GMAIL_RECEIVING_EMAIL_ADDRESS'], 'Portfolio Gacem Nassim Contact Form');
         $mail->addReplyTo($email, $name);
         $mail->addAddress($_ENV['GMAIL_RECEIVING_EMAIL_ADDRESS']);
 

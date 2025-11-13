@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CoinPilot — Portfolio Details | Nassim Gacem</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicons -->
+    <link href="../assets/img/favicon.png" rel="icon" />
+    <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="../vendor/aos/aos.css" rel="stylesheet" />
+    <link href="../vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+    <link href="../vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+    <!-- Main CSS -->
+    <link href="../assets/css/main.css" rel="stylesheet" />
+  </head>
+
+  <body class="portfolio-details-page">
+    <header id="header" class="header d-flex align-items-center sticky-top">
+      <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+        <a href="../index.html" class="logo d-flex align-items-center">
+          <h1 class="sitename">Nassim Gacem</h1>
+        </a>
+
+        <nav id="navmenu" class="navmenu">
+          <ul>
+            <li><a href="../index.html#hero" class="active">Home</a></li>
+            <li><a href="../index.html#about">About</a></li>
+            <li><a href="../index.html#project">Project</a></li>
+            <li><a href="../index.html#contact">Contact</a></li>
+          </ul>
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="page-title" data-aos="fade">
+        <div class="container d-lg-flex justify-content-between align-items-center">
+          <h1 class="mb-2 mb-lg-0">Portfolio Details</h1>
+          <nav class="breadcrumbs">
+            <ol>
+              <li><a href="../index.html">Home</a></li>
+              <li class="current">Portfolio Details</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <section id="portfolio-details" class="portfolio-details section">
+        <div class="container" data-aos="fade-up">
+          <div class="portfolio-details-slider swiper init-swiper">
+            <script type="application/json" class="swiper-config">
+              {
+                "loop": true,
+                "speed": 600,
+                "autoplay": { "delay": 5000 },
+                "slidesPerView": "auto",
+                "navigation": { "nextEl": ".swiper-button-next", "prevEl": ".swiper-button-prev" },
+                "pagination": { "el": ".swiper-pagination", "type": "bullets", "clickable": true }
+              }
+            </script>
+
+            <div class="swiper-wrapper align-items-center">
+              <div class="swiper-slide"><img src="../assets/img/portfolio/app-1.jpg" alt="App screenshot" /></div>
+              <div class="swiper-slide"><img src="../assets/img/portfolio/product-1.jpg" alt="Product screenshot" /></div>
+              <div class="swiper-slide"><img src="../assets/img/portfolio/branding-1.jpg" alt="Branding" /></div>
+              <div class="swiper-slide"><img src="../assets/img/portfolio/books-1.jpg" alt="Books" /></div>
+            </div>
+
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-pagination"></div>
+          </div>
+
+          <div class="row justify-content-between gy-4 mt-4">
+            <div class="col-lg-8" data-aos="fade-up">
+              <div class="portfolio-description">
+                <p>
+                  PortalPro est pensé pour être évolutif : à terme, des fonctionnalités telles que la recherche, les filtres,
+                  et des tests unitaires automatisés permettront de maintenir un système robuste et fiable.
+                </p>
+
+                <h2>CoinPilot</h2>
+
+                <p>
+                  CoinPilot est un bot Discord entièrement développé en <strong>TypeScript</strong> qui permet aux utilisateurs de suivre
+                  l’évolution de leurs cryptomonnaies en temps réel. L’objectif du projet est d’offrir un assistant simple, intuitif
+                  et accessible directement depuis un serveur Discord, sans nécessiter d’application externe.
+                </p>
+
+                <p>
+                  Le bot utilise l’API de <strong>CoinGecko</strong> pour récupérer des données actualisées telles que le prix,
+                  la variation, la capitalisation, ou encore les volumes échangés. Les utilisateurs peuvent demander des
+                  <strong>analyses rapides</strong>, gérer des <strong>listes de suivis personnalisées</strong> et activer des
+                  <strong>notifications automatiques</strong>.
+                </p>
+
+                <p>
+                  CoinPilot est structuré autour de commandes Slash modernes grâce à <strong>Discord.js v14</strong>. Le projet est organisé
+                  en modules (events, commands, services), garantissant un code maintenable et évolutif.
+                </p>
+
+                <p>
+                  Le bot est conçu pour être facilement déployé grâce à <strong>Docker</strong>, rendant l’environnement reproductible et stable.
+                </p>
+
+                <p>CoinPilot reflète ma volonté de créer des outils modernes orientés données, combinant automatisation, UX et technologies robustes.</p>
+              </div>
+            </div>
+
+            <div class="col-lg-3" data-aos="fade-up" data-aos-delay="100">
+              <div class="portfolio-info">
+                <h3>Project information</h3>
+                <ul>
+                  <li><strong>Category</strong> Discord Bot / Crypto Assistant</li>
+                  <li><strong>Tech Stack</strong> TypeScript, Node.js, Discord.js, CoinGecko API, Docker</li>
+                  <li><strong>Project date</strong> 2025</li>
+                  <li>
+                    <strong>GitHub</strong>
+                    <a href="https://github.com/ton-repo-coinpilot" target="_blank" rel="noopener">View on GitHub</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/ton-repo-coinpilot" target="_blank" rel="noopener" class="btn-visit align-self-start">Visit Project</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="footer" class="footer accent-background">
+      <div class="container">
+        <div class="copyright text-center">
+          <p>© <strong class="px-1 sitename">Gacem Nassim</strong> All Rights Reserved</p>
+        </div>
+
+        <div class="social-links d-flex justify-content-center">
+          <a href=""><i class="bi bi-instagram"></i></a>
+          <a href=""><i class="bi bi-linkedin"></i></a>
+        </div>
+
+        <div class="credits text-center">
+          Designed by Gacem Nassim. Template by <a href="https://bootstrapmade.com/" target="_blank" rel="noopener">BootstrapMade</a>
+        </div>
+      </div>
+    </footer>
+
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+
+    <!-- Vendor JS -->
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendor/php-email-form/validate.js"></script>
+    <script src="../vendor/aos/aos.js"></script>
+    <script src="../vendor/typed.js/typed.umd.js"></script>
+    <script src="../vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="../vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="../vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="../vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="../vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="../vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Main JS -->
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>
