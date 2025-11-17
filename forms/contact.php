@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->Username   = $_ENV['GMAIL_USEREMAIL'];
         $mail->Password   = $_ENV['GMAIL_PASSWORD'];
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-        $mail->Port       = 465;
+        $mail->Port       = 587;
 
         $mail->setFrom($_ENV['GMAIL_RECEIVING_EMAIL_ADDRESS'], 'Portfolio Gacem Nassim Contact Form');
         $mail->addReplyTo($email, $name);
