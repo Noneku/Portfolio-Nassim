@@ -6,9 +6,12 @@ use Dotenv\Dotenv;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// Charger le .env
-$dotenv = Dotenv::createImmutable(__DIR__ . '/../');
-$dotenv->load();
+// Charger .env uniquement en local
+$envPath = __DIR__ . '/../.env';
+if (file_exists($envPath)) {
+    $dotenv = Dotenv::createImmutable(dirname($envPath));
+    $dotenv->load();
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name    = trim($_POST['name'] ?? '');
@@ -44,10 +47,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $mail->send();
     } catch (Exception $e) {
-        echo "OK" . $mail->ErrorInfo;
+        echo "Erreur PHPMailer: " . $mail->ErrorInfo;
+        exit;
     }
 
-    // 2️⃣ Envoi à l'API PortalPro pour stockage en DB
+    // 2️⃣ Envoi à l'API PortalPro
     $response = postMailToAPI($name, $subject, $message, $email, $_ENV['GMAIL_RECEIVING_EMAIL_ADDRESS']);
 
     echo "OK";
