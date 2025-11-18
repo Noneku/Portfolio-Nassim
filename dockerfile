@@ -8,7 +8,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get clean && rm -rf /var/lib/apt
 ARG CACHEBUST=1
 
 # Copie de ton portfolio dans Apache
-COPY . /var/www/html/
+COPY . /var/www/html/ 
 
 # Activation du module rewrite (au cas où)
 RUN a2enmod rewrite
